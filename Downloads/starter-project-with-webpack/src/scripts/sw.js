@@ -41,11 +41,13 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       (async () => {
         try {
+          // 1. Coba ambil dari jaringan (ini akan mengizinkan proxy webpack bekerja)
           const networkResponse = await fetch(request);
           return networkResponse;
         } catch (error) {
+          // 2. Jika jaringan gagal (offline), baru sajikan 'app shell' dari cache
           console.log('Network request failed, serving app shell from cache.');
-          return await caches.match('/index.html');
+          return await caches.match('index.html');
         }
       })()
     );
@@ -59,6 +61,7 @@ self.addEventListener('fetch', (event) => {
       // ...
       return fetch(request)
         .then((res) => {
+          // Cek apakah request valid, metode GET, dan URL-nya dimulai dengan 'http'
           if (!res || res.status !== 200 || request.method !== 'GET' || !request.url.startsWith('http')) {
             return res;
           }

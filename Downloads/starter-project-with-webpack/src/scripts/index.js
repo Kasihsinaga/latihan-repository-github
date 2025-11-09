@@ -4,6 +4,7 @@ import mapLogo from '../public/images/map.png';
 import { getAccessToken } from './utils/auth'; 
 import { registerServiceWorker } from './utils';
 
+
 let deferredPrompt = null;
 
 // Inisialisasi App di scope atas
@@ -13,6 +14,7 @@ const app = new App({
   navigationDrawer: document.querySelector('#navigation-drawer'),
 });
 
+
 const handleNavigation = async () => {
   const token = getAccessToken();
   let path = window.location.hash;
@@ -20,6 +22,7 @@ const handleNavigation = async () => {
   // Normalisasi path jika kosong
   if (path === '') path = '#/';
 
+  
   const protectedRoutes = ['#/home', '#/favorites', '#/add-report', '#/reports/:id'];
   const authRoutes = ['#/login', '#/register'];
   const rootPath = '#/';
@@ -28,21 +31,26 @@ const handleNavigation = async () => {
   const targetRoute = path.startsWith('#/reports/') ? '#/reports/:id' : path;
 
   if (token) {
+    
     if (authRoutes.includes(targetRoute)) {
+      
       window.location.hash = '#/home'; 
       return; 
     }
     if (targetRoute === rootPath) {
+      
       window.location.hash = '#/home'; 
       return; 
     }
   } else {
+    
     if (protectedRoutes.includes(targetRoute) || targetRoute === rootPath) {
-      window.location.hash = '#/login'; 
+      window.location.hash = '#/login';
       return; 
     }
   }
-
+  
+  
   const mainContent = document.querySelector('#main-content');
   if (mainContent) {
     mainContent.classList.remove('fade-in');
@@ -58,6 +66,8 @@ const handleNavigation = async () => {
   }
 };
 
+
+// === EVENT LISTENER UTAMA ===
 document.addEventListener('DOMContentLoaded', async () => {
   const logo = document.querySelector('.logo');
   if (logo) logo.src = mapLogo;
@@ -96,7 +106,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.warn('Gagal mendaftarkan Service Worker:', e);
   }
 
+  // Panggil handleNavigation saat pertama kali memuat halaman
   await handleNavigation();
 
+ 
   window.addEventListener('hashchange', handleNavigation);
 });

@@ -17,7 +17,9 @@ export default class HomePage {
         <h3 style="margin-top:20px">Daftar Laporan</h3>
         
         <div class="search-container" style="margin-bottom: 15px;">
-          <input type="search" id="searchBar" placeholder="Cari laporan berdasarkan nama atau deskripsi..." 
+        <label for="cari">Cari Laporan</label>
+          <input type="search" id="searchBar" alt="cari"
+          placeholder="Cari laporan berdasarkan nama atau deskripsi..." 
                  style="width: 100%; padding: 10px 14px; border: 1px solid #ccc; border-radius: 8px; font-size: 15px;">
         </div>
         <div id="reportList"></div>
@@ -133,7 +135,7 @@ export default class HomePage {
         return `
           <div class="report-card" style="view-transition-name: card-${s.id};">
             <div class="report-card-content">
-              <h3>${s.name}</h3>
+              <h4>${s.name}</h4>
               <p><b>ID:</b> ${s.id}</p>
               <img src="${s.photoUrl}" alt="${s.name}" />
               <p class="story-date">Tanggal: ${this.#presenter.formatDate(s.createdAt)}</p>
@@ -205,7 +207,6 @@ export default class HomePage {
   `;
     document.head.appendChild(style);
 
-    // Marker acak di peta (sementara)
     stories.slice(0, 10).forEach((story) => {
       const lat = -6.2 + Math.random();
       const lng = 106.8 + Math.random();
@@ -255,7 +256,7 @@ export default class HomePage {
           likeButton.style.color = '#dc3545'; 
           likeButton.setAttribute('aria-label', 'Unlike this story');
         } else {
-          likeButton.style.color = '#aaaaaa'; 
+          likeButton.style.color = '#aaaaaa';
           likeButton.setAttribute('aria-label', 'Like this story');
         }
       } catch (error) {
@@ -278,7 +279,7 @@ export default class HomePage {
           <div class="
           " style="border: 1px solid #ddd; margin: 10px; padding: 10px;">
             <h3>${r.title}</h3>
-            <img src="${r.image}" width="200" />
+            <img src="${r.image}" width="200" alt="${r.title}"/>
             <p>${r.description}</p>
             <button class="detail-btn" data-id="${r.id}">Selengkapnya</button>
           </div>

@@ -10,7 +10,7 @@ export function getAccessToken() {
   return localStorage.getItem(ACCESS_TOKEN_KEY);
 }
  
-// Hapus token dari localStorage 
+// Hapus token dari localStorage (misalnya saat logout)
 export function removeAccessToken() {
   localStorage.removeItem(ACCESS_TOKEN_KEY);
 }

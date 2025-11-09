@@ -3,7 +3,7 @@ import { openDB } from 'idb';
 // === Konstanta Database ===
 const DATABASE_NAME = 'citycare-db';
 const DATABASE_VERSION = 1;
-const FAVORITES_STORE = 'favorites'; 
+const FAVORITES_STORE = 'favorites';
 const OUTBOX_STORE = 'outbox';
 
 // === Inisialisasi Database ===
@@ -49,6 +49,7 @@ export const deleteFavorite = async (id) => {
 
 // === Fungsi: Outbox (untuk laporan offline) ===
 export const addToOutbox = async (report) => {
+  // ... (kode outbox tetap sama)
 };
 
 export const getOutbox = async () => {

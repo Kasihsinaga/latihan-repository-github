@@ -110,10 +110,11 @@ export default class AddReportPresenter {
   }
 
   #showLocalNotification(title, description) {
+    // Dapatkan token pengguna saat ini
     const token = getAccessToken();
     if (!token) return; 
 
-    // Cek status 'subscribe' dari localStorage 
+    // Cek status 'subscribe' dari localStorage (yang diatur home-presenter)
     const subscribedUsers = JSON.parse(localStorage.getItem('subscribedUsers')) || [];
     const isSubscribed = subscribedUsers.includes(token);
 
@@ -122,7 +123,7 @@ export default class AddReportPresenter {
       try {
         const options = {
           body: description,
-          icon: '/images/map.png', 
+          icon: '/images/map.png',
           tag: 'laporan-sukses',
         };
         new Notification(title, options); 
@@ -200,7 +201,7 @@ export default class AddReportPresenter {
           text: 'Laporanmu sudah terkirim ke server.',
           confirmButtonText: 'OK',
         });
-        window.location.hash = '/home';
+        window.location.hash = '#/home';
       } else {
         Swal.fire({
           icon: 'error',

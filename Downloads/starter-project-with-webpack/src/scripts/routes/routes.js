@@ -3,7 +3,6 @@ import AddReportPage from '../pages/home/add-report-page';
 import ReportDetailPage from '../pages/home/report-detail-page';
 import FavoritesPage from '../pages/favorites-page';
 
-// Halaman Auth
 import LoginPage from '../pages/auth/login-page';
 import RegisterPage from '../pages/auth/register-page';
 

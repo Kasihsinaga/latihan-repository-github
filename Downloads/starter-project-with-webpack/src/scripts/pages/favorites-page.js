@@ -14,7 +14,7 @@ export default class FavoritesPage {
         }
       </style>
       <section class="container" id="main-content-favorites">
-        <h5 style="margin-top: 1rem; text-align: center;">Halaman Favorit</h5>
+        <h2 style="margin-top: 1rem; text-align: center;">Halaman Favorit</h2>
         <p>Laporan yang Anda simpan akan muncul di sini.</p>
         <div id="favoriteList" style="margin-top: 1.5rem;">
           <p>Memuat laporan favorit...</p>
@@ -32,13 +32,13 @@ export default class FavoritesPage {
       favoriteListContainer.innerHTML = '<p>Gagal memuat laporan favorit.</p>';
     }
 
-    // event listener untuk tombol "unlike" di halaman ini
+    // Tambahkan event listener untuk tombol "unlike" 
     favoriteListContainer.addEventListener('click', async (event) => {
       const unlikeButton = event.target.closest('.btn-unlike');
       if (unlikeButton) {
         const id = unlikeButton.dataset.id;
         
-        // konfirmasi
+        // Tampilkan konfirmasi
         const result = await Swal.fire({
           title: 'Hapus dari Favorit?',
           text: 'Anda yakin ingin menghapus laporan ini dari favorit?',

@@ -1,7 +1,7 @@
 import { getAccessToken } from "../utils/auth";
 import CONFIG from '../config';
  
-const BASE_API_URL = '/v1'; 
+const BASE_API_URL = 'https://story-api.dicoding.dev/v1'; 
  
 const ENDPOINTS = {
   STORIES: `${BASE_API_URL}/stories`,
@@ -9,7 +9,9 @@ const ENDPOINTS = {
   LOGIN: `${BASE_API_URL}/login`,
 };
  
-
+/**
+ * Ambil semua story
+ */
 export async function getStories() {
   const token = getAccessToken();
   if (!token) {
@@ -36,6 +38,9 @@ export async function getStories() {
   return data;
 }
  
+/**
+ * Unggah story baru
+ */
 export async function postStory({ description, photo, lat, lon }) {
   const token = getAccessToken();
   if (!token) {
